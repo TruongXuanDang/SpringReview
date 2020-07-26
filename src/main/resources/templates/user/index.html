@@ -9,6 +9,9 @@
 
 <table>
     <a href="/add">Add User</a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
     <tr>
         <th>ID</th>
         <th>Password</th>
