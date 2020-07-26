@@ -10,4 +10,5 @@ public interface IUserService {
             public void saveUser(User user);
             public void deleteUser(int id);
             public Optional<User> findUserById(int id);
+            public List<User> findByUserName(String username);
 }

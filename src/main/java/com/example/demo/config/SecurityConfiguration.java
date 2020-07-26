@@ -32,9 +32,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login")
                 .permitAll();
+        http.csrf().disable();
     }
 
     @Override
