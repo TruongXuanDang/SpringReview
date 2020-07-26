@@ -8,7 +8,8 @@
 
 <form th:object="${user}" th:action="@{save}" action="#" th:method="post">
     <label th:text="username" th:for="username"/>
-    <input th:field="*{username}" type="text"/>
+    <input th:field="*{username}" type="text" required/>
+    <span style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
     <br/>
     <label th:text="password" th:for="password"/>
     <input th:field="*{password}" type="text"/><br/>

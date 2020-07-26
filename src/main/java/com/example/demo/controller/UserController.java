@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.User;
+import com.example.demo.entity.UserValidator;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class UserController {
         @RequestMapping(value = "save",method = RequestMethod.POST)
         public String save(@Validated @ModelAttribute("user") User user, BindingResult bindingResult, HttpServletRequest request,Model model){
             int userId  = request.getParameter("id")==null?0:Integer.parseInt(request.getParameter("id"));
+            new UserValidator().validate(user,bindingResult);
             if(bindingResult.hasErrors()){
                 if(userId==0)
                     return "user/add";
