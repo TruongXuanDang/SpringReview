@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>Success</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h1>List Role</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+
+    <tr th:if="${lsRole.empty}">
+        <td colspan="2"> No Roles Available </td>
+    </tr>
+    <tr th:each="role : ${lsRole}">
+        <td><span th:text="${role.id}"> ID </span></td>
+        <td><span th:text="${role.name}"> Name </span></td>
+    </tr>
+
+</table>
+<div class="pagination-div">
+        <span th:if="${lsRole.hasPrevious()}">
+            <a th:href="@{/pagination(page=${lsRole.number-1},size=${lsRole.size})}">Previous</a>
+        </span>
+
+    <th:block th:each="i: ${#numbers.sequence(0, lsRole.totalPages - 1)}">
+        <span th:if="${lsRole.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${lsRole.number == i}">
+             <a th:href="@{/pagination(page=${i},size=${lsRole.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+
+    <span th:if="${lsRole.hasNext()}">
+            <a th:href="@{/pagination(page=${lsRole.number+1},size=${lsRole.size})}">Next</a>
+        </span>
+</div>
+</body>
+</html>
